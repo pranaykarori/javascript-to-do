@@ -1,0 +1,682 @@
+@font-face {
+
+  font-family: Montserrat;
+
+  src: url("fonts/Montserrat-Regular.ttf");
+
+}
+
+ 
+
+* {
+
+  font-family: Montserrat;
+
+}
+
+body {
+
+  background-color: teal;
+
+} 
+
+h1 {
+
+    text-align: center;
+
+    color: white;
+
+    margin-top: 50px;
+
+}
+
+.screen {
+
+  background-color: grey;
+
+  border: solid black 2px;
+
+  color: white;
+
+  font-size: medium;
+
+  width: 100%;
+
+  cursor: default;
+
+  padding: 10px;
+
+  margin: auto;
+
+  margin-bottom: 10px;
+
+}
+
+input[type="button"]:hover {
+
+  background-color: #fff;
+
+}
+
+input[type="button"]:active {
+
+  background-color: orangered;
+
+}
+
+.operator {
+
+  background-color: orange;
+
+  padding: 5px;
+
+  color: black;
+
+  border: solid black 2px;
+
+  width: 100%;
+
+  height: 40px;
+
+  cursor: pointer;
+
+}
+
+ 
+
+.number {
+
+  padding: 5px;
+
+  height: 40px;
+
+  color: black;
+
+  border: solid black 2px;
+
+  width: 100%;
+
+  cursor: pointer;
+
+}
+
+ 
+
+.decimal {
+
+  background-color: lightblue;
+
+  padding: 5px;
+
+  color: black;
+
+  border: solid black 2px;
+
+  width: 100%;
+
+  height: 40px;
+
+  cursor: pointer;
+
+}
+
+ 
+
+.clear {
+
+  background-color: lightsalmon;
+
+  padding: 5px;
+
+  color: black;
+
+  border: solid black 2px;
+
+  width: 100%;
+
+  height: 40px;
+
+  cursor: pointer;
+
+  margin: auto;
+
+  margin-bottom: 10px;
+
+}
+
+ 
+
+.equal {
+
+  background-color: lightgreen;
+
+  padding: 5px;
+
+  color: black;
+
+  border: solid black 2px;
+
+  width: 100%;
+
+  height: 40px;
+
+  cursor: pointer;
+
+}
+
+ 
+
+.container {
+
+  width: 40%;
+
+  background-color: #fff;
+
+  align-self: center;
+
+  display: block;
+
+  margin: 100px auto;
+
+  border-radius: 10px;
+
+  padding: 15px;
+
+  box-shadow: 5px 10px 20px black;
+
+}
+
+ 
+
+table {
+
+  width: 100%;
+
+}
+
+ 
+
+div.relative {
+
+  position: absolute;
+
+  top: 600px;
+
+  right: 120px;
+
+}
+
+End Result
+The JavaScript Calculator should look and feel like this in the end, though you are free to tweak this game’s logic and style and make it your own.
+
+JavaScript_Calculato_%20Application_%28End_Result%29
+
+Fig: JavaScript Calculator Application (End Result)_JavaScript_Projects
+
+JavaScript To-Do Application
+Now that you’ve created your first application based on JavaScript, let’s move onto building our next JavaScript application, which will be a to-do list. So without further ado, let’s get started!
+
+JavaScript_To-Do_Application
+
+Fig: JavaScript To-Do Application
+
+Project Directory
+The project directory should look like the image below, in the end.
+
+JavaScript_To-Do_Application_PD
+
+Fig: Project Directory
+
+index.html
+This file contains the general layout of the to-do list. The elements are further styled in the CSS file and made interactive in a separate JavaScript file.
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>To-do List</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div id="listBox" class="header">
+
+        <h2>My To Do List</h2>
+
+        <input type="text" id="item" placeholder="Title..." />
+
+        <span onclick="newElement()" class="addBtn">Add</span>
+
+      </div>
+
+ 
+
+      <ul id="list">
+
+        <li>Learn JavaScript</li>
+
+        <li class="checked">Subscribe to Simplilearn</li>
+
+        <li>Buy Groceries</li>
+
+        <li>Read a book</li>
+
+      </ul>
+
+    </div>
+
+    <div class="relative">
+
+      <img src="./simplilearn.png" style="width: 200px; height: 80px" />
+
+    </div>
+
+    <script src="app.js"></script>
+
+  </body>
+
+</html>
+
+ 
+
+Import both CSS stylesheet as well as JavaScript file into this HTML file to reflect the styles in the application.
+Use HTML <div> tag to design the to-do list container.
+Add a new button to add items to this list.
+Use the <ul> (unordered list) ) tag to add items to the todo-list by default.
+Add a Simplilearn logo to the web application.
+app.js
+This file contains the scripts attached to the HTML file and makes each element in the application interactive. We have added comments in the code to better understand each function in this file.
+
+// Create a "close" button and append it to each list item
+
+var myNodelist = document.getElementsByTagName("LI");
+
+var i;
+
+for (i = 0; i < myNodelist.length; i++) {
+
+  var span = document.createElement("SPAN");
+
+  var txt = document.createTextNode("\u00D7");
+
+  span.className = "close";
+
+  span.appendChild(txt);
+
+  myNodelist[i].appendChild(span);
+
+}
+
+ 
+
+// Click on a close button to hide the current list item
+
+var close = document.getElementsByClassName("close");
+
+var i;
+
+for (i = 0; i < close.length; i++) {
+
+  close[i].onclick = function() {
+
+    var div = this.parentElement;
+
+    div.style.display = "none";
+
+  }
+
+}
+
+ 
+
+// Add a "checked" symbol when clicking on a list item
+
+var list = document.querySelector('ul');
+
+list.addEventListener('click', function(ev) {
+
+  if (ev.target.tagName === 'LI') {
+
+    ev.target.classList.toggle('checked');
+
+  }
+
+}, false);
+
+ 
+
+// Create a new list item when clicking on the "Add" button
+
+function newElement() {
+
+  var li = document.createElement("li");
+
+  var inputValue = document.getElementById("item").value;
+
+  var t = document.createTextNode(inputValue);
+
+  li.appendChild(t);
+
+  if (inputValue === '') {
+
+    alert("This field cannot be empty!");
+
+  } else {
+
+    document.getElementById("list").appendChild(li);
+
+  }
+
+  document.getElementById("item").value = "";
+
+ 
+
+  var span = document.createElement("SPAN");
+
+  var txt = document.createTextNode("\u00D7");
+
+  span.className = "close";
+
+  span.appendChild(txt);
+
+  li.appendChild(span);
+
+ 
+
+  for (i = 0; i < close.length; i++) {
+
+    close[i].onclick = function() {
+
+      var div = this.parentElement;
+
+      div.style.display = "none";
+
+    }
+
+  }
+
+}
+
+Create a close button and append it to each list item.
+Click on the close button to hide the current list item.
+Add a ‘checked’ symbol when clicking on a list item.
+Create a new list item when clicking on the ‘Add’ button.
+style.css
+This file contains the stylesheet for styling HTML elements used in this application. All the CSS styles are self-explanatory and applied to each class defined in the HTML file. Feel free to play with these CSS styles and give this application your personal touch.
+
+@font-face {
+
+  font-family: Montserrat;
+
+  src: url(fonts/Montserrat-Regular.ttf);
+
+}
+
+ 
+
+* {
+
+  box-sizing: border-box;
+
+  font-family: Montserrat;
+
+}
+
+ 
+
+body {
+
+  background-color: lightsteelblue;
+
+  background-image: url("bg.jpg");
+
+  height: 600px;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  background-size: cover;
+
+}
+
+ 
+
+.container {
+
+  width: 50%;
+
+  background-color: #fff;
+
+  align-self: center;
+
+  display: block;
+
+  margin: 120px auto;
+
+  box-shadow: 5px 10px 20px black;
+
+}
+
+ 
+
+ul {
+
+  margin: 0;
+
+  border-left: 6px solid teal;
+
+  list-style-type: none;
+
+  padding: 0;
+
+}
+
+ 
+
+ul li {
+
+  cursor: pointer;
+
+  position: relative;
+
+  padding: 12px 8px 12px 40px;
+
+  background: #eee;
+
+  font-size: 18px;
+
+  transition: 0.2s;
+
+ 
+
+  -webkit-user-select: none;
+
+  -moz-user-select: none;
+
+  -ms-user-select: none;
+
+  user-select: none;
+
+}
+
+ 
+
+ul li:nth-child(odd) {
+
+  background: #f9f9f9;
+
+}
+
+ 
+
+ul li:hover {
+
+  background: #ddd;
+
+}
+
+ 
+
+ul li.checked {
+
+  background: #888;
+
+  color: #fff;
+
+  text-decoration: line-through;
+
+}
+
+ 
+
+ul li.checked::before {
+
+  content: "";
+
+  position: absolute;
+
+  border-color: #fff;
+
+  border-style: solid;
+
+  border-width: 0 2px 2px 0;
+
+  top: 10px;
+
+  left: 16px;
+
+  transform: rotate(45deg);
+
+  height: 15px;
+
+  width: 7px;
+
+}
+
+ 
+
+.close {
+
+  position: absolute;
+
+  right: 0;
+
+  top: 0;
+
+  padding: 12px 16px 12px 16px;
+
+}
+
+ 
+
+.close:hover {
+
+  background-color: #f44336;
+
+  color: white;
+
+}
+
+ 
+
+.header {
+
+  background-color: teal;
+
+  padding: 30px 30px;
+
+  color: white;
+
+  text-align: center;
+
+}
+
+ 
+
+.header:after {
+
+  content: "";
+
+  display: table;
+
+  clear: both;
+
+}
+
+ 
+
+input {
+
+  margin: 0;
+
+  border: none;
+
+  border-radius: 0;
+
+  width: 75%;
+
+  padding: 10px;
+
+  float: left;
+
+  font-size: 16px;
+
+}
+
+ 
+
+.addBtn {
+
+  padding: 10px;
+
+  width: 25%;
+
+  background: #d9d9d9;
+
+  color: #555;
+
+  float: left;
+
+  text-align: center;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  border-radius: 0;
+
+}
+
+ 
+
+.addBtn:hover {
+
+  background-color: #bbb;
+
+}
+
+ 
+
+div.relative {
+
+  position: absolute;
+
+  top: 600px;
+
+  right: 75px;
+
+}
